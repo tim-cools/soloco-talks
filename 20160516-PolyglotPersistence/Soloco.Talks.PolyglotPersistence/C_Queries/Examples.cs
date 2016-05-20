@@ -5,17 +5,16 @@ using System.Linq.Expressions;
 using Marten;
 using Marten.Linq;
 using Soloco.Talks.PolyglotPersistence.Infrastructure;
-using Soloco.Talks.PolyglotPersistence.TestData;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Soloco.Talks.PolyglotPersistence
+namespace Soloco.Talks.PolyglotPersistence.C_Queries
 {
-    public class QueryExamples
+    public class Examples
     {
         private readonly ITestOutputHelper _testOutputHelper;
 
-        public QueryExamples(ITestOutputHelper testOutputHelper)
+        public Examples(ITestOutputHelper testOutputHelper)
         {
             _testOutputHelper = testOutputHelper;
         }
@@ -39,7 +38,8 @@ namespace Soloco.Talks.PolyglotPersistence
         [Fact]
         public void QueryWithProjection()
         {
-            var store = TestDocumentStore.Create();
+            var store = TestDocumentStore.Create(_testOutputHelper);
+
             store.AddRoutes(100);
 
             using (var session = store.QuerySession())
@@ -112,7 +112,8 @@ namespace Soloco.Talks.PolyglotPersistence
 
             public Expression<Func<IQueryable<Route>, IEnumerable<string>>> QueryIs()
             {
-                return query => query.Where(route => route.Status == RouteStatus.Planned && route.Date > DateTime)
+                return query => query
+                    .Where(route => route.Status == RouteStatus.Planned && route.Date > DateTime)
                     .AsJson();
             }
         }
@@ -128,6 +129,44 @@ namespace Soloco.Talks.PolyglotPersistence
                 var routes = session.Query(new RoutesPlannedAfterJson(DateTime.Now.AddDays(5))).ToList();
 
                 _testOutputHelper.WriteLine(routes.AsString());
+            }
+        }
+
+        [Fact]
+        public void QueryComplex()
+        {
+            var nerdName = "John";
+            var pageSize = 20;
+            var page = 2;
+
+            var store = TestDocumentStore.Create();
+            store.AddDinners(200);
+
+            using (var session = store.QuerySession())
+            {
+                QueryStatistics stats;
+
+                var dinners = session.Query<Dinner>()
+                    .Stats(out stats)
+                    .Where(x => x.HostedBy == nerdName)
+                    .OrderBy(x => x.EventDate)
+                    .Skip(pageSize * page)
+                    .Take(pageSize)
+                    .Select(dinner => new
+                    {
+                        dinner.Id,
+                        dinner.Title,
+                        Date = dinner.EventDate,
+                        dinner.Address,
+                        dinner.HostedBy
+                    })
+                    .ToList();
+
+                _testOutputHelper
+                    .Write("TotalResults: " + stats.TotalResults)
+                    .Write("Dinners: " + dinners.Count)
+                    .NewLine()
+                    .WriteAsJson(dinners);
             }
         }
     }    

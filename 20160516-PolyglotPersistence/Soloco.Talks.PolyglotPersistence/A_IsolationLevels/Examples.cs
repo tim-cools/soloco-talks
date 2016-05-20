@@ -1,17 +1,15 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using Soloco.Talks.PolyglotPersistence.Infrastructure;
-using Soloco.Talks.PolyglotPersistence.TestData;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Soloco.Talks.PolyglotPersistence
+namespace Soloco.Talks.PolyglotPersistence.A_IsolationLevels
 {   
-    public class IsolationExamples
+    public class Examples
     {
         private readonly ITestOutputHelper _testOutputHelper;
 
-        public IsolationExamples(ITestOutputHelper testOutputHelper)
+        public Examples(ITestOutputHelper testOutputHelper)
         {
             _testOutputHelper = testOutputHelper;
         }        
@@ -49,6 +47,7 @@ namespace Soloco.Talks.PolyglotPersistence
 
 
 
+
         [Fact]
         public void LoadAccountA()
         {
@@ -57,7 +56,8 @@ namespace Soloco.Talks.PolyglotPersistence
             using (var session = store.OpenSession())
             {
                 var accountA = session.Load<Account>("A");
-                _testOutputHelper.WriteLine(accountA.ToString());
+
+                _testOutputHelper.WriteAsJson(accountA);
             }
         }
 

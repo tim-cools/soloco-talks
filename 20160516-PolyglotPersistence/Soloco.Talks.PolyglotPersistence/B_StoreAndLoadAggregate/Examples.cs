@@ -1,28 +1,23 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using Marten;
 using Soloco.Talks.PolyglotPersistence.Infrastructure;
-using Soloco.Talks.PolyglotPersistence.TestData;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Soloco.Talks.PolyglotPersistence
+namespace Soloco.Talks.PolyglotPersistence.B_StoreAndLoadAggregate
 {
    
-    public class AggregateExamples
+    public class Examples
     {
         private readonly ITestOutputHelper _testOutputHelper;
 
-        public AggregateExamples(ITestOutputHelper testOutputHelper)
+        public Examples(ITestOutputHelper testOutputHelper)
         {
             _testOutputHelper = testOutputHelper;
         }
 
-
         [Fact]
-        public void AggregateById()
+        public void LoadAggregateById()
         {
             var store = TestDocumentStore.Create();
             var id = AddRoute(store);
@@ -36,7 +31,7 @@ namespace Soloco.Talks.PolyglotPersistence
         }
 
         [Fact]
-        public void AggregateAsJson()
+        public void FindAggregateAsJson()
         {
             var store = TestDocumentStore.Create();
             var id = AddRoute(store);
@@ -65,5 +60,5 @@ namespace Soloco.Talks.PolyglotPersistence
                 return route.ID;
             }
         }
-    }    
+    }
 }

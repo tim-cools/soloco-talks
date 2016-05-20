@@ -1,8 +1,6 @@
 using System;
 using Marten;
-using Soloco.Talks.PolyglotPersistence.TestData;
 using Xunit.Abstractions;
-using Xunit.Sdk;
 
 namespace Soloco.Talks.PolyglotPersistence.Infrastructure
 {
@@ -14,13 +12,17 @@ namespace Soloco.Talks.PolyglotPersistence.Infrastructure
             {
                 options.Connection(Connection.String);
                 options.AutoCreateSchemaObjects = AutoCreate.CreateOrUpdate;
+
                 if (testOutputHelper != null)
                 {
                     options.Logger(new TestOutputLogger(testOutputHelper));
                 }
+
                 optionsHandler?.Invoke(options);
             });
+
             documentStore.Advanced.Clean.CompletelyRemoveAll();
+
             return documentStore;
         }
     }

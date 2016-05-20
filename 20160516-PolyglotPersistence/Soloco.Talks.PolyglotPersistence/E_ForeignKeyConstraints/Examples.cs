@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Soloco.Talks.PolyglotPersistence.Infrastructure;
 using Soloco.Talks.PolyglotPersistence.TestData;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Soloco.Talks.PolyglotPersistence
+namespace Soloco.Talks.PolyglotPersistence.E_ForeignKeyConstraints
 {
     public class ForeignKeysExamples
     {
@@ -22,7 +20,8 @@ namespace Soloco.Talks.PolyglotPersistence
         {
             var store = TestDocumentStore.Create(optionsHandler: options =>
             {
-                options.Schema.For<Order>().ForeignKey<Customer>(order => order.CustomerID);
+                options.Schema.For<Order>()
+                    .ForeignKey<Customer>(order => order.CustomerID);
             });
 
             using (var session = store.OpenSession())
@@ -48,8 +47,8 @@ namespace Soloco.Talks.PolyglotPersistence
                 session.Store(customer);
 
                 var order1 = new Order(customer.ID);
-
                 session.Store(order1);
+
                 session.SaveChanges();
             }
         }

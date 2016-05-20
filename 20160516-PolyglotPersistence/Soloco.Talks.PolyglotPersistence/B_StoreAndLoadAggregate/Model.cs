@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Soloco.Talks.PolyglotPersistence.Infrastructure;
 
-namespace Soloco.Talks.PolyglotPersistence.TestData
+namespace Soloco.Talks.PolyglotPersistence.B_StoreAndLoadAggregate
 {
     public class Route
     {
         private readonly List<Stop> _stops = new List<Stop>();
 
-        public Guid ID { get; private set; }
+        public Guid ID { get; set; }
         public RouteStatus Status { get; private set; }
         public DateTime Date { get; private set; }
 
@@ -28,6 +28,11 @@ namespace Soloco.Talks.PolyglotPersistence.TestData
 
         public void AddStop(string name, Position position)
         {
+            if (Status != RouteStatus.Planned)
+            {
+                throw new InvalidOperationException("Route should be planned first.");
+            }
+
             _stops.Add(new Stop(name, position));
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Soloco.Talks.PolyglotPersistence.C_Queries;
 using Soloco.Talks.PolyglotPersistence.Infrastructure;
 using Soloco.Talks.PolyglotPersistence.TestData;
 using Xunit;
