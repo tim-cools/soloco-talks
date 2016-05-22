@@ -31,14 +31,14 @@ namespace Soloco.Talks.PolyglotPersistence.C_Queries
                     .Where(route => route.Status == RouteStatus.Planned)
                     .ToList();
 
-                _testOutputHelper.WriteLine(routes.AsString());
+                _testOutputHelper.WriteAsJson(routes);
             }
         }
 
         [Fact]
         public void QueryWithProjection()
         {
-            var store = TestDocumentStore.Create(_testOutputHelper);
+            var store = TestDocumentStore.Create(testOutputHelper: _testOutputHelper);
 
             store.AddRoutes(100);
 

@@ -12,11 +12,7 @@ namespace Soloco.Talks.PolyglotPersistence.G_EventSourcing.Domain
         protected void Publish<TEvent>(TEvent @event)
         {
             _events.Add(@event);
-            Apply(@event);
-        }
 
-        private void Apply(object @event)
-        {
             EventPlayer.Apply(this, @event);
         }
 
@@ -37,8 +33,6 @@ namespace Soloco.Talks.PolyglotPersistence.G_EventSourcing.Domain
 
         public Stop Source { get; private set; }
         public Stop Destination { get; private set; }
-
-        public IEnumerable<Stop> Stops => _stops;
 
         public Route()
         {

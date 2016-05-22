@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Soloco.Talks.PolyglotPersistence.C_Queries;
 using Soloco.Talks.PolyglotPersistence.Infrastructure;
 using Soloco.Talks.PolyglotPersistence.TestData;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Soloco.Talks.PolyglotPersistence
+namespace Soloco.Talks.PolyglotPersistence.D_QueriesWithInclude
 {
     public class QueryWithIncludesExamples
     {
@@ -21,7 +20,7 @@ namespace Soloco.Talks.PolyglotPersistence
         [Fact]
         public void QuerySingleInclude()
         {
-            var store = TestDocumentStore.Create(_testOutputHelper);
+            var store = TestDocumentStore.Create();
 
             using (var session = store.OpenSession())
             {
@@ -54,7 +53,7 @@ namespace Soloco.Talks.PolyglotPersistence
         [Fact]
         public void QueryMultiInclude()
         {
-            var store = TestDocumentStore.Create(_testOutputHelper);
+            var store = TestDocumentStore.Create(testOutputHelper: _testOutputHelper);
             store.AddProductsAndOrders();
 
             _testOutputHelper.BeginTest("QueryMultiInclude");

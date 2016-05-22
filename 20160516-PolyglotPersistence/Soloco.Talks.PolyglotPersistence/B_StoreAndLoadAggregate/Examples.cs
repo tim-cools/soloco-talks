@@ -19,7 +19,7 @@ namespace Soloco.Talks.PolyglotPersistence.B_StoreAndLoadAggregate
         [Fact]
         public void LoadAggregateById()
         {
-            var store = TestDocumentStore.Create();
+            var store = TestDocumentStore.CreateSimple();
             var id = AddRoute(store);
 
             using (var session = store.QuerySession())
@@ -40,7 +40,7 @@ namespace Soloco.Talks.PolyglotPersistence.B_StoreAndLoadAggregate
             {
                 var json = session.FindJsonById<Route>(id);
 
-                _testOutputHelper.WriteLine(json);
+                _testOutputHelper.WriteFormattedJson(json);
             }
         }
 

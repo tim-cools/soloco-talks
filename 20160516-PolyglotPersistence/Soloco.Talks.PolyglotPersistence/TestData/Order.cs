@@ -24,8 +24,8 @@ namespace Soloco.Talks.PolyglotPersistence.TestData
     {
         private readonly List<OrderLine> _lines = new List<OrderLine>();
 
-        public Guid ID { get; set; }
-        public Guid CustomerID { get; private set; }
+        public Guid ID { get; private set; }
+        public Guid CustomerID { get; }
         public OrderStatus Status { get; private set; }
 
         public IEnumerable<OrderLine> Lines => _lines;
@@ -66,8 +66,9 @@ namespace Soloco.Talks.PolyglotPersistence.TestData
 
     public class Product
     {
-        public Guid ID { get; set; }
+        public Guid ID { get; private set; }
         public string Name { get; private set; }
+
 
         public Product(string name)
         {
@@ -77,7 +78,7 @@ namespace Soloco.Talks.PolyglotPersistence.TestData
 
     public class OrderLine
     {
-        public Guid ID { get; set; }
+        public Guid ID { get; private set; }
         public Guid ProductId { get; private set; }
         public int Amount { get; private set; }
 

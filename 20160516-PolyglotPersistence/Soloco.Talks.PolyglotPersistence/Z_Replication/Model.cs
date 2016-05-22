@@ -3,17 +3,54 @@ using System.Collections;
 using System.Collections.Generic;
 using Soloco.Talks.PolyglotPersistence.Infrastructure;
 
-namespace Soloco.Talks.PolyglotPersistence.B_StoreAndLoadAggregate
+namespace Soloco.Talks.PolyglotPersistence.Z_Replication
 {
     public class Route
     {
         private readonly List<Stop> _stops = new List<Stop>();
 
-        public Guid ID { get; private set; }
+        public Guid ID { get; set; }
         public RouteStatus Status { get; private set; }
         public DateTime Date { get; private set; }
 
-        public IEnumerable<Stop> Stops => _stops;
+        public IEnumerable Stops => _stops;
+
+        public void Plan(DateTime date)
+        {
+            if (date < DateTime.Today.AddDays(1))
+            {
+                throw new InvalidOperationException("Route can only plan from tomorrow.");
+            }
+
+            Status = RouteStatus.Planned;
+            Date = date;
+        }
+
+        public void AddStop(string name, Position position)
+        {
+            if (Status != RouteStatus.Planned)
+            {
+                throw new InvalidOperationException("Route should be planned first.");
+            }
+
+            _stops.Add(new Stop(name, position));
+        }
+
+        public override string ToString()
+        {
+            return $"ID: {ID}, Status: {Status}, Date: {Date}{_stops.AsString()}";
+        }
+    }
+
+    public class Route2
+    {
+        private readonly List<Stop> _stops = new List<Stop>();
+
+        public Guid ID { get; set; }
+        public RouteStatus Status { get; private set; }
+        public DateTime Date { get; private set; }
+
+        public IEnumerable Stops => _stops;
 
         public void Plan(DateTime date)
         {

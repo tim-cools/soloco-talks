@@ -1,5 +1,5 @@
 ﻿using System;
-using Marten.Schema;
+using Marten.Schema.Identity;
 using Soloco.Talks.PolyglotPersistence.G_EventSourcing.Domain;
 using Soloco.Talks.PolyglotPersistence.Infrastructure;
 using Xunit;
@@ -20,7 +20,7 @@ namespace Soloco.Talks.PolyglotPersistence.G_EventSourcing
         public void EventSourcingShowTheEvents()
         {
             var store = TestDocumentStore.Create();
-            var routeId = CombGuidIdGeneration.NewGuid();
+            var routeId = CombGuidIdGeneration.New();
 
             using (var session = store.OpenSession())
             {
@@ -52,7 +52,7 @@ namespace Soloco.Talks.PolyglotPersistence.G_EventSourcing
         public void EventSourcingShowAggregate()
         {
             var store = TestDocumentStore.Create();
-            var routeId = CombGuidIdGeneration.NewGuid();
+            var routeId = CombGuidIdGeneration.New();
 
             using (var session = store.OpenSession())
             {
@@ -85,7 +85,7 @@ namespace Soloco.Talks.PolyglotPersistence.G_EventSourcing
                 options.Events.AggregateStreamsInlineWith<Route>();
             });
 
-            var routeId = CombGuidIdGeneration.NewGuid();
+            var routeId = CombGuidIdGeneration.New();
 
             using (var session = store.OpenSession())
             {

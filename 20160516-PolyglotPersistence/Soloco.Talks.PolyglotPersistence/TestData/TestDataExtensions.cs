@@ -37,8 +37,8 @@ namespace Soloco.Talks.PolyglotPersistence.TestData
             const int numberOfProducts = 10;
             const int numberOfOrders = 10;
 
-            var customers = new Customer[numberOfProducts];
-            var products = new Product[numberOfProducts];
+            var customers = new Customer[numberOfCustomers];
+            var products = new Product[numberOfOrders];
 
             using (var session = store.OpenSession())
             {

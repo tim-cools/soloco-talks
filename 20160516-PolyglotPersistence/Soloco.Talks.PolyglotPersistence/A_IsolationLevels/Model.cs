@@ -4,7 +4,7 @@ namespace Soloco.Talks.PolyglotPersistence.A_IsolationLevels
 {
     public class Account
     {
-        public string Id { get; set; }
+        public string Id { get; private set; }
         public int Amount { get; private set; }
 
         public Account(string id, int amount)

@@ -4,7 +4,7 @@ namespace Soloco.Talks.PolyglotPersistence.TestData
 {
     public class Account
     {
-        public string ID { get; set; }
+        public string ID { get; private set; }
         public int Amount { get; private set; }
 
         public Account(string id, int amount)
