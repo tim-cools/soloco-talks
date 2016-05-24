@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Soloco.Talks.PolyglotPersistence.Infrastructure;
-using Soloco.Talks.PolyglotPersistence.TestData;
 using Xunit;
 using Xunit.Abstractions;
 

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Soloco.Talks.PolyglotPersistence.TestData
+namespace Soloco.Talks.PolyglotPersistence.E_ForeignKeyConstraints
 {
     public class Customer
     {
-        public Guid ID { get; set; }
+        public Guid ID { get; private set; }
 
         public string Name { get; }
 

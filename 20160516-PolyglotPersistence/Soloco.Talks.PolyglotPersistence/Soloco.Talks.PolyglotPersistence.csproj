@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="A_IsolationLevels\Model.cs" />
+    <Compile Include="E_ForeignKeyConstraints\Model.cs" />
     <Compile Include="G_EventSourcing\Example.cs" />
     <Compile Include="F_InlineTransformationWithDomainEvents\Projection.cs" />
     <Compile Include="B_StoreAndLoadAggregate\Examples.cs" />
@@ -104,17 +105,19 @@
     <Compile Include="Infrastructure\OutputExtensions.cs" />
     <Compile Include="Infrastructure\TestOutputLogger.cs" />
     <Compile Include="Infrastructure\PrivateSettersContractResolvers.cs" />
-    <Compile Include="TestData\Order.cs" />
+    <Compile Include="D_QueriesWithInclude\Model.cs" />
     <Compile Include="C_Queries\TestDataExtensions.cs" />
     <Compile Include="Infrastructure\FormattingExtensions.cs" />
-    <Compile Include="TestData\Route.cs" />
-    <Compile Include="TestData\Account.cs" />
     <Compile Include="A_IsolationLevels\Examples.cs" />
     <Compile Include="C_Queries\Examples.cs" />
     <Compile Include="Infrastructure\ConnectionString.cs" />
+    <Compile Include="I_EventSourcingWithProjections\Domain.cs" />
+    <Compile Include="I_EventSourcingWithProjections\Events.cs" />
+    <Compile Include="I_EventSourcingWithProjections\Example.cs" />
+    <Compile Include="I_EventSourcingWithProjections\Projection.cs" />
+    <Compile Include="I_EventSourcingWithProjections\Views.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Infrastructure\TestDocumentStore.cs" />
-    <Compile Include="TestData\TestDataExtensions.cs" />
     <Compile Include="Z_Replication\Examples.cs" />
     <Compile Include="Z_Replication\Model.cs" />
   </ItemGroup>
@@ -124,10 +127,7 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="H_EventSourcingWithAggreation\" />
-    <Folder Include="I_EventSourcingWithProjections\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

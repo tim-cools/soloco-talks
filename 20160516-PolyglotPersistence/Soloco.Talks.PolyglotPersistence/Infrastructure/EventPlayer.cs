@@ -8,8 +8,8 @@ namespace Soloco.Talks.PolyglotPersistence.Infrastructure
         {
             if (aggregate == null) throw new ArgumentNullException(nameof(aggregate));
             if (@event == null) throw new ArgumentNullException(nameof(@event));
-            
-            //todo we should generate some code here to invoke the methed and cache it here
+
+            //todo we should generate some code to invoke the methed and cache it here
             var aggregateType = aggregate.GetType();
             var eventType = @event.GetType();
 

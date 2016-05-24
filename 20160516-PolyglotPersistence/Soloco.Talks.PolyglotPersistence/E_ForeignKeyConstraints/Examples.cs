@@ -1,6 +1,5 @@
 ﻿using System;
 using Soloco.Talks.PolyglotPersistence.Infrastructure;
-using Soloco.Talks.PolyglotPersistence.TestData;
 using Xunit;
 using Xunit.Abstractions;
 

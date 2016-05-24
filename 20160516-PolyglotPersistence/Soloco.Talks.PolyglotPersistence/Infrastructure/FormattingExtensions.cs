@@ -2,28 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Marten.Linq;
-using Soloco.Talks.PolyglotPersistence.TestData;
 
 namespace Soloco.Talks.PolyglotPersistence.Infrastructure
 {
     public static class FormattingExtensions
     {
-        public static string AsString(this IList<Route> routes)
-        {
-            if (routes == null) throw new ArgumentNullException(nameof(routes));
-
-            using (var writer = new StringWriter())
-            {
-                writer.WriteLine($"Routes: ({routes.Count})");
-
-                foreach (var route in routes)
-                {
-                    writer.WriteLine(route);
-                }
-                return writer.ToString();
-            }
-        }
-
         public static string AsString<T>(this IList<T> items)
         {
             if (items == null) throw new ArgumentNullException(nameof(items));
@@ -47,21 +30,6 @@ namespace Soloco.Talks.PolyglotPersistence.Infrastructure
                 foreach (var item in dictionary)
                 {
                     writer.WriteLine(item.Value);
-                }
-                return writer.ToString();
-            }
-        }
-
-        public static string AsString(this IList<Stop> stops)
-        {
-            if (stops == null) throw new ArgumentNullException(nameof(stops));
-
-            using (var writer = new StringWriter())
-            {
-                writer.WriteLine($"  Stops: ({stops.Count})");
-                foreach (var stop in stops)
-                {
-                    writer.WriteLine("  - " + stop);
                 }
                 return writer.ToString();
             }
