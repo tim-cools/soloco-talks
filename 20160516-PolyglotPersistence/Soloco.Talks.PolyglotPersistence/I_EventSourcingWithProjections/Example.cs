@@ -1,4 +1,5 @@
 ﻿using System;
+using Marten;
 using Marten.Schema.Identity;
 using Soloco.Talks.PolyglotPersistence.I_EventSourcingWithProjections.Domain;
 using Soloco.Talks.PolyglotPersistence.Infrastructure;
@@ -26,7 +27,7 @@ namespace Soloco.Talks.PolyglotPersistence.I_EventSourcingWithProjections
 
             var routeId = CombGuidIdGeneration.New();
 
-            using (var session = store.DirtyTrackedSession())
+            using (var session = store.OpenSession())
             {
                 var route = new Route(routeId);            
                 route.Plan(DateTime.Now.AddDays(1));
