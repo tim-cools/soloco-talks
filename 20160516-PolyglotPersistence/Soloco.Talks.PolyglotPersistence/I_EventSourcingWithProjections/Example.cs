@@ -26,7 +26,7 @@ namespace Soloco.Talks.PolyglotPersistence.I_EventSourcingWithProjections
 
             var routeId = CombGuidIdGeneration.New();
 
-            using (var session = store.OpenSession())
+            using (var session = store.DirtyTrackedSession())
             {
                 var route = new Route(routeId);            
                 route.Plan(DateTime.Now.AddDays(1));

@@ -49,7 +49,7 @@ namespace Soloco.Talks.PolyglotPersistence.B_StoreAndLoadAggregate
             using (var session = store.OpenSession())
             {
                 var route = new Route();
-                route.Plan(new DateTime(2016, 05, 26));
+                route.Plan(new DateTime(2016, 05, 27));
                 route.AddStop("Home", new Position(51.197894m, 4.481736m));
                 route.AddStop("WooRank", new Position(50.828417m, 4.400963m));
                 route.AddStop("Home", new Position(51.197894m, 4.481736m));
@@ -57,7 +57,7 @@ namespace Soloco.Talks.PolyglotPersistence.B_StoreAndLoadAggregate
                 session.Store(route);
                 session.SaveChanges();
 
-                return route.ID;
+                return route.Id;
             }
         }
     }

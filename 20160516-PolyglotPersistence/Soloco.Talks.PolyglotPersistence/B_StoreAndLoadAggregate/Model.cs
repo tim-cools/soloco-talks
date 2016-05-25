@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using Soloco.Talks.PolyglotPersistence.Infrastructure;
 
@@ -9,7 +8,7 @@ namespace Soloco.Talks.PolyglotPersistence.B_StoreAndLoadAggregate
     {
         private readonly List<Stop> _stops = new List<Stop>();
 
-        public Guid ID { get; private set; }
+        public Guid Id { get; private set; }
         public RouteStatus Status { get; private set; }
         public DateTime Date { get; private set; }
 
@@ -17,13 +16,18 @@ namespace Soloco.Talks.PolyglotPersistence.B_StoreAndLoadAggregate
 
         public void Plan(DateTime date)
         {
-            if (date < DateTime.Today.AddDays(1))
+            if (date < Tomorrow())
             {
                 throw new InvalidOperationException("Route can only plan from tomorrow.");
             }
 
             Status = RouteStatus.Planned;
             Date = date;
+        }
+
+        private static DateTime Tomorrow()
+        {
+            return DateTime.Today.AddDays(1);
         }
 
         public void AddStop(string name, Position position)
@@ -38,7 +42,7 @@ namespace Soloco.Talks.PolyglotPersistence.B_StoreAndLoadAggregate
 
         public override string ToString()
         {
-            return $"ID: {ID}, Status: {Status}, Date: {Date}{_stops.AsString()}";
+            return $"ID: {Id}, Status: {Status}, Date: {Date}{Environment.NewLine}{_stops.AsString()}";
         }
     }
 

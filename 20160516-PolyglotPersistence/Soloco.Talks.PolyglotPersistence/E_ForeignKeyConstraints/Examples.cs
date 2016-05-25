@@ -20,12 +20,12 @@ namespace Soloco.Talks.PolyglotPersistence.E_ForeignKeyConstraints
             var store = TestDocumentStore.Create(optionsHandler: options =>
             {
                 options.Schema.For<Order>()
-                    .ForeignKey<Customer>(order => order.CustomerID);
+                    .ForeignKey<Customer>(order => order.CustomerId);
             });
 
             using (var session = store.OpenSession())
             {
-                var order1 = new Order(customerID: new Guid());
+                var order1 = new Order(customerId: new Guid());
 
                 session.Store(order1);
                 session.SaveChanges();
@@ -37,7 +37,7 @@ namespace Soloco.Talks.PolyglotPersistence.E_ForeignKeyConstraints
         {
             var store = TestDocumentStore.Create(optionsHandler: options =>
             {
-                options.Schema.For<Order>().ForeignKey<Customer>(order => order.CustomerID);
+                options.Schema.For<Order>().ForeignKey<Customer>(order => order.CustomerId);
             });
 
             using (var session = store.OpenSession())
@@ -45,7 +45,7 @@ namespace Soloco.Talks.PolyglotPersistence.E_ForeignKeyConstraints
                 var customer = new Customer("customer-1");
                 session.Store(customer);
 
-                var order1 = new Order(customer.ID);
+                var order1 = new Order(customerId: customer.Id);
                 session.Store(order1);
 
                 session.SaveChanges();

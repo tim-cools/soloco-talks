@@ -6,7 +6,7 @@ namespace Soloco.Talks.PolyglotPersistence.D_QueriesWithInclude
 {
     public class Customer
     {
-        public Guid ID { get; set; }
+        public Guid Id { get; private set; }
 
         public string Name { get; }
 
@@ -17,7 +17,7 @@ namespace Soloco.Talks.PolyglotPersistence.D_QueriesWithInclude
 
         public override string ToString()
         {
-            return $"Customer ({ID}): Name: {Name}";
+            return $"Customer ({Id}): Name: {Name}";
         }
     }
 
@@ -25,15 +25,15 @@ namespace Soloco.Talks.PolyglotPersistence.D_QueriesWithInclude
     {
         private readonly List<OrderLine> _lines = new List<OrderLine>();
 
-        public Guid ID { get; private set; }
-        public Guid CustomerID { get; }
+        public Guid Id { get; private set; }
+        public Guid CustomerId { get; }
         public OrderStatus Status { get; private set; }
 
         public IEnumerable<OrderLine> Lines => _lines;
 
         public Order(Guid customerID)
         {
-            CustomerID = customerID;
+            CustomerId = customerID;
         }
 
         public void AddProduct(Product product, int amount)
@@ -44,7 +44,7 @@ namespace Soloco.Talks.PolyglotPersistence.D_QueriesWithInclude
                 throw new InvalidOperationException("Amount must be greather than 0.");
             }
 
-            var line = new OrderLine(product.ID, amount);
+            var line = new OrderLine(product.Id, amount);
             _lines.Add(line);
         }
 
@@ -55,7 +55,7 @@ namespace Soloco.Talks.PolyglotPersistence.D_QueriesWithInclude
 
         public override string ToString()
         {
-            return $"Order ({ID}): CustomerID: {CustomerID}, Status: {Status}";
+            return $"Order ({Id}): CustomerID: {CustomerId}, Status: {Status}";
         }
     }
 
@@ -67,7 +67,7 @@ namespace Soloco.Talks.PolyglotPersistence.D_QueriesWithInclude
 
     public class Product
     {
-        public Guid ID { get; private set; }
+        public Guid Id { get; private set; }
         public string Name { get; private set; }
 
 
@@ -121,7 +121,7 @@ namespace Soloco.Talks.PolyglotPersistence.D_QueriesWithInclude
 
                 for (var index = 0; index < numberOfOrders; index++)
                 {
-                    var order = new Order(customers[index % numberOfCustomers].ID);
+                    var order = new Order(customers[index % numberOfCustomers].Id);
                     order.AddProduct(products[index % numberOfProducts], index + 1);
                     if (index % 2 == 0)
                     {

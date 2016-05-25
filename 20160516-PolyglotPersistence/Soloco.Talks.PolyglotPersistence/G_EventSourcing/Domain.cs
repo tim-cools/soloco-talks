@@ -34,6 +34,8 @@ namespace Soloco.Talks.PolyglotPersistence.G_EventSourcing.Domain
         public Stop Source { get; private set; }
         public Stop Destination { get; private set; }
 
+        public IEnumerable<Stop> Stops => _stops;
+
         public Route()
         {
         }

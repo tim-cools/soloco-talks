@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using Marten;
 using Marten.Linq;
+using Marten.Schema;
 using Soloco.Talks.PolyglotPersistence.Infrastructure;
 using Xunit;
 using Xunit.Abstractions;
@@ -29,7 +30,7 @@ namespace Soloco.Talks.PolyglotPersistence.C_Queries
             {
                 var routes = session.Query<Route>()
                     .Where(route => route.Status == RouteStatus.Planned)
-                    .ToList();
+                    .ToArray();
 
                 _testOutputHelper.WriteAsJson(routes);
             }
@@ -39,19 +40,18 @@ namespace Soloco.Talks.PolyglotPersistence.C_Queries
         public void QueryWithProjection()
         {
             var store = TestDocumentStore.Create(testOutputHelper: _testOutputHelper);
-
             store.AddRoutes(100);
 
             using (var session = store.QuerySession())
             {
                 var routes = session.Query<Route>()
                     .Where(route => route.Status == RouteStatus.Planned)
-                    .Select(route => new { route.ID, route.Date })
+                    .Select(route => new { route.Id, route.Date })
                     .ToList();
 
                 foreach (var route in routes)
                 {
-                    _testOutputHelper.WriteLine($"ID: {route.ID} Date: {route.Date}");
+                    _testOutputHelper.WriteLine($"ID: {route.Id} Date: {route.Date}");
                 }
             }
         }
@@ -71,6 +71,26 @@ namespace Soloco.Talks.PolyglotPersistence.C_Queries
                 _testOutputHelper.WriteLine(queryPlan.AsString());
             }
         }
+
+        [Fact]
+        public void QueryExplaindWithIndex()
+        {
+            var store = TestDocumentStore.Create(optionsHandler: options =>
+            {
+                options.Schema.For<Route>().Searchable(route => route.Status);
+            });
+            store.AddRoutes(100);
+
+            using (var session = store.QuerySession())
+            {
+                var queryPlan = session.Query<Route>()
+                    .Where(route => route.Status == RouteStatus.Planned)
+                    .Explain();
+
+                _testOutputHelper.WriteAsJson(queryPlan);
+            }
+        }
+
 
         public class RoutesPlannedAfter : ICompiledQuery<Route, IEnumerable<Route>>
         {
@@ -135,7 +155,7 @@ namespace Soloco.Talks.PolyglotPersistence.C_Queries
         [Fact]
         public void QueryComplex()
         {
-            var nerdName = "John";
+            var john = "John";
             var pageSize = 20;
             var page = 2;
 
@@ -148,7 +168,7 @@ namespace Soloco.Talks.PolyglotPersistence.C_Queries
 
                 var dinners = session.Query<Dinner>()
                     .Stats(out stats)
-                    .Where(x => x.HostedBy == nerdName)
+                    .Where(x => x.HostedBy == john)
                     .OrderBy(x => x.EventDate)
                     .Skip(pageSize * page)
                     .Take(pageSize)
@@ -158,7 +178,7 @@ namespace Soloco.Talks.PolyglotPersistence.C_Queries
                         dinner.Title,
                         Date = dinner.EventDate,
                         dinner.Address,
-                        dinner.HostedBy
+                        Host = dinner.HostedBy
                     })
                     .ToList();
 

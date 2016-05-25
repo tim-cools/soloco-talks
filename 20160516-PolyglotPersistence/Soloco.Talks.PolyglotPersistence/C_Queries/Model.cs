@@ -11,9 +11,9 @@ namespace Soloco.Talks.PolyglotPersistence.C_Queries
     {
         private readonly List<Stop> _stops = new List<Stop>();
 
-        public Guid ID { get; set; }
+        public Guid Id { get; private set; }
         public RouteStatus Status { get; private set; }
-        public DateTime Date { get; private set; }
+        public DateTime? Date { get; private set; }
 
         public IEnumerable Stops => _stops;
 
@@ -35,7 +35,7 @@ namespace Soloco.Talks.PolyglotPersistence.C_Queries
 
         public override string ToString()
         {
-            return $"ID: {ID}, Status: {Status}, Date: {Date}{_stops.AsString()}";
+            return $"ID: {Id}, Status: {Status}, Date: {Date}{_stops.AsString()}";
         }
     }
 

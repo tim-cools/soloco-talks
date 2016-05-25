@@ -96,6 +96,7 @@
     <Compile Include="G_EventSourcing\Events.cs" />
     <Compile Include="G_EventSourcing\Domain.cs" />
     <Compile Include="Infrastructure\EventPlayer.cs" />
+    <Compile Include="Infrastructure\JsonNetWithPrivateSupportSerializer.cs" />
     <Compile Include="Infrastructure\TestOutputHelperExtensions.cs" />
     <Compile Include="Infrastructure\BaseProjection.cs" />
     <Compile Include="F_InlineTransformationWithDomainEvents\Views.cs" />

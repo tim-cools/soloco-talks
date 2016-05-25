@@ -19,14 +19,14 @@ namespace Soloco.Talks.PolyglotPersistence.D_QueriesWithInclude
         [Fact]
         public void QuerySingleInclude()
         {
-            var store = TestDocumentStore.Create();
+            var store = TestDocumentStore.Create(testOutputHelper:_testOutputHelper);
 
             using (var session = store.OpenSession())
             {
                 var customer = new Customer("customer-1");
                 session.Store(customer);
 
-                var order = new Order(customer.ID);
+                var order = new Order(customer.Id);
                 order.Complete();
 
                 session.Store(order);
@@ -41,7 +41,7 @@ namespace Soloco.Talks.PolyglotPersistence.D_QueriesWithInclude
 
                 var firstOrder = session
                     .Query<Order>()
-                    .Include<Customer>(order => order.CustomerID, value => customer = value)
+                    .Include<Customer>(order => order.CustomerId, value => customer = value)
                     .FirstOrDefault(route => route.Status == OrderStatus.Completed);
 
                 _testOutputHelper.WriteLine(firstOrder.ToString());
@@ -52,7 +52,7 @@ namespace Soloco.Talks.PolyglotPersistence.D_QueriesWithInclude
         [Fact]
         public void QueryMultiInclude()
         {
-            var store = TestDocumentStore.Create(testOutputHelper: _testOutputHelper);
+            var store = TestDocumentStore.Create();
             store.AddProductsAndOrders();
 
             _testOutputHelper.BeginTest("QueryMultiInclude");
@@ -63,7 +63,7 @@ namespace Soloco.Talks.PolyglotPersistence.D_QueriesWithInclude
 
                 var orders = session
                     .Query<Order>()
-                    .Include(order => order.CustomerID, customers)
+                    .Include(order => order.CustomerId, customers)
                     .Where(route => route.Status == OrderStatus.Completed)
                     .ToList();
 

@@ -5,7 +5,7 @@ namespace Soloco.Talks.PolyglotPersistence.E_ForeignKeyConstraints
 {
     public class Customer
     {
-        public Guid ID { get; private set; }
+        public Guid Id { get; private set; }
 
         public string Name { get; }
 
@@ -16,7 +16,7 @@ namespace Soloco.Talks.PolyglotPersistence.E_ForeignKeyConstraints
 
         public override string ToString()
         {
-            return $"Customer ({ID}): Name: {Name}";
+            return $"Customer ({Id}): Name: {Name}";
         }
     }
 
@@ -25,14 +25,14 @@ namespace Soloco.Talks.PolyglotPersistence.E_ForeignKeyConstraints
         private readonly List<OrderLine> _lines = new List<OrderLine>();
 
         public Guid ID { get; private set; }
-        public Guid CustomerID { get; }
+        public Guid CustomerId { get; }
         public OrderStatus Status { get; private set; }
 
         public IEnumerable<OrderLine> Lines => _lines;
 
-        public Order(Guid customerID)
+        public Order(Guid customerId)
         {
-            CustomerID = customerID;
+            CustomerId = customerId;
         }
 
         public void AddProduct(Product product, int amount)
@@ -54,7 +54,7 @@ namespace Soloco.Talks.PolyglotPersistence.E_ForeignKeyConstraints
 
         public override string ToString()
         {
-            return $"Order ({ID}): CustomerID: {CustomerID}, Status: {Status}";
+            return $"Order ({ID}): CustomerID: {CustomerId}, Status: {Status}";
         }
     }
 

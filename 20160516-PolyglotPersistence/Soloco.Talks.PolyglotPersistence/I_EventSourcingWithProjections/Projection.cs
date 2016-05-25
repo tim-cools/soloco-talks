@@ -45,16 +45,13 @@ namespace Soloco.Talks.PolyglotPersistence.I_EventSourcingWithProjections
 
         private void RouteSourceAdded(IDocumentSession session, RouteSourceAdded @event)
         {
-            var routeId = @event.RouteId;
-            var value = @event.Name.Value;
-            var position = @event.Position;
-            var routeDetails = GetRouteDetails(session, routeId);
+            var routeDetails = GetRouteDetails(session, @event.RouteId);
 
             var stopDetails = new RouteStopDetails
             {
-                StopId = routeId,
-                Name = value,
-                Position = new Position(position.Latitude, position.Longitude)
+                StopId = @event.RouteId,
+                Name = @event.Name.Value,
+                Position = new Position(@event.Position.Latitude, @event.Position.Longitude)
             };
 
             routeDetails.From = stopDetails;
