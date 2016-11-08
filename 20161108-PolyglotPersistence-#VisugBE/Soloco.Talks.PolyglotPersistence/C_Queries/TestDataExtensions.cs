@@ -20,7 +20,7 @@ namespace Soloco.Talks.PolyglotPersistence.C_Queries
                         route.Plan(DateTime.Now.AddDays(index + 1));
                     }
                     route.AddStop("Home", new Position(51.197894m, 4.481736m));
-                    route.AddStop("WooRank", new Position(50.828417m, 4.400963m));
+                    route.AddStop("Visug", new Position(50.828417m, 4.400963m));
                     route.AddStop("Home", new Position(51.197894m, 4.481736m));
 
                     session.Store(route);

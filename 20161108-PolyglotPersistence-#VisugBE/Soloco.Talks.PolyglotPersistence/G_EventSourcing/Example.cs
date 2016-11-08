@@ -26,7 +26,7 @@ namespace Soloco.Talks.PolyglotPersistence.G_EventSourcing
                 var route = new Route(routeId);            
                 route.Plan(DateTime.Now.AddDays(1));
                 route.AddSource(new StopName("Home"), new TimeOfDay(17, 30), new Position(51.197894m, 4.481736m));
-                route.AddDestination(new StopName("WooRank"), new TimeOfDay(18, 30), new Position(50.828417m, 4.400963m));
+                route.AddDestination(new StopName("Visug"), new TimeOfDay(18, 30), new Position(50.828417m, 4.400963m));
                 route.AddStop(new StopName("Filling station"), new TimeOfDay(17, 45), new Position(50.828417m, 4.400963m));
                 route.Drive(new DateTime(2016, 05, 20, 17, 32, 0));
 
@@ -58,7 +58,7 @@ namespace Soloco.Talks.PolyglotPersistence.G_EventSourcing
                 var route = new Route(routeId);
                 route.Plan(DateTime.Now.AddDays(1));
                 route.AddSource(new StopName("Home"), new TimeOfDay(17, 30), new Position(51.197894m, 4.481736m));
-                route.AddDestination(new StopName("WooRank"), new TimeOfDay(18, 30), new Position(50.828417m, 4.400963m));
+                route.AddDestination(new StopName("Visug"), new TimeOfDay(18, 30), new Position(50.828417m, 4.400963m));
                 route.AddStop(new StopName("Filling station"), new TimeOfDay(17, 45), new Position(50.828417m, 4.400963m));
                 route.Drive(new DateTime(2016, 05, 20, 17, 32, 0));
 
@@ -91,7 +91,7 @@ namespace Soloco.Talks.PolyglotPersistence.G_EventSourcing
                 var route = new Route(routeId);
                 route.Plan(DateTime.Now.AddDays(1));
                 route.AddSource(new StopName("Home"), new TimeOfDay(17, 30), new Position(51.197894m, 4.481736m));
-                route.AddDestination(new StopName("WooRank"), new TimeOfDay(18, 30), new Position(50.828417m, 4.400963m));
+                route.AddDestination(new StopName("Visug"), new TimeOfDay(18, 30), new Position(50.828417m, 4.400963m));
                 route.AddStop(new StopName("Filling station"), new TimeOfDay(17, 45), new Position(50.828417m, 4.400963m));
                 route.Drive(new DateTime(2016, 05, 20, 17, 32, 0));
 
