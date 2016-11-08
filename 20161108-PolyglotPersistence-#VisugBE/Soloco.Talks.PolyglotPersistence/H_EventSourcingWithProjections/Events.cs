@@ -1,6 +1,7 @@
 ﻿using System;
+using Soloco.Talks.PolyglotPersistence.Infrastructure;
 
-namespace Soloco.Talks.PolyglotPersistence.I_EventSourcingWithProjections.Domain
+namespace Soloco.Talks.PolyglotPersistence.H_EventSourcingWithProjections
 {
     public class RouteCreated
     {

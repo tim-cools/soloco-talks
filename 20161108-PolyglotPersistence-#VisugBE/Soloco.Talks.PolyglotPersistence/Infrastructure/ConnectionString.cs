@@ -15,7 +15,7 @@ namespace Soloco.Talks.PolyglotPersistence.Infrastructure
             var connectionString = ConfigurationManager.ConnectionStrings[name];
             if (connectionString == null)
             {
-                throw new InvalidOperationException($"Connection string nog found: {name}");
+                throw new InvalidOperationException($"Connection string not found: {name}");
             }
             return connectionString.ConnectionString;
         }

@@ -1,17 +1,16 @@
 ﻿using System;
 using Marten.Schema.Identity;
-using Soloco.Talks.PolyglotPersistence.G_EventSourcing.Domain;
 using Soloco.Talks.PolyglotPersistence.Infrastructure;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace Soloco.Talks.PolyglotPersistence.G_EventSourcing
 {
-    public class Examples
+    public class Examples_G
     {
         private readonly ITestOutputHelper _testOutputHelper;
 
-        public Examples(ITestOutputHelper testOutputHelper)
+        public Examples_G(ITestOutputHelper testOutputHelper)
         {
             _testOutputHelper = testOutputHelper;
         }

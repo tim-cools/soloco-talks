@@ -64,23 +64,6 @@ namespace Soloco.Talks.PolyglotPersistence.C_Queries
         }
     }
 
-    public class Position
-    {
-        public decimal Latitude { get; }
-        public decimal Longitude { get; }
-
-        public Position(decimal longitude, decimal latitude)
-        {
-            Longitude = longitude;
-            Latitude = latitude;
-        }
-
-        public override string ToString()
-        {
-            return $"Latitude: {Latitude}, Longitude: {Longitude}";
-        }
-    }
-
     public class Dinner
     {
         /// <summary>

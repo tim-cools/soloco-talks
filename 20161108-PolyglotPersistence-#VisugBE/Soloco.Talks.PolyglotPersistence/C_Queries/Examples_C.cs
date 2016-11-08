@@ -67,7 +67,7 @@ namespace Soloco.Talks.PolyglotPersistence.C_Queries
                     .Where(route => route.Status == RouteStatus.Planned)
                     .Explain();
 
-                _testOutputHelper.WriteLine(queryPlan.AsString());
+                _testOutputHelper.WriteAsJson(queryPlan);
             }
         }
 
@@ -76,7 +76,7 @@ namespace Soloco.Talks.PolyglotPersistence.C_Queries
         {
             var store = TestDocumentStore.Create(optionsHandler: options =>
             {
-                options.Schema.For<Route>().Searchable(route => route.Status);
+                options.Schema.For<Route>().Index(route => route.Status);
             });
             store.AddRoutes(100);
 
@@ -89,7 +89,6 @@ namespace Soloco.Talks.PolyglotPersistence.C_Queries
                 _testOutputHelper.WriteAsJson(queryPlan);
             }
         }
-
 
         public class RoutesPlannedAfter : ICompiledQuery<Route, IEnumerable<Route>>
         {
@@ -158,8 +157,10 @@ namespace Soloco.Talks.PolyglotPersistence.C_Queries
             var pageSize = 20;
             var page = 2;
 
-            var store = TestDocumentStore.Create();
+            var store = TestDocumentStore.Create(testOutputHelper: _testOutputHelper);
             store.AddDinners(200);
+
+            _testOutputHelper.BeginTest("QueryComplex");
 
             using (var session = store.QuerySession())
             {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Soloco.Talks.PolyglotPersistence.Infrastructure;
 
-namespace Soloco.Talks.PolyglotPersistence.I_EventSourcingWithProjections.Domain
+namespace Soloco.Talks.PolyglotPersistence.H_EventSourcingWithProjections
 {
     public class AggregateRoot
     {
@@ -257,22 +257,5 @@ namespace Soloco.Talks.PolyglotPersistence.I_EventSourcingWithProjections.Domain
         Planned,
         Driving,
         Stopped
-    }
-
-    public class Position
-    {
-        public decimal Latitude { get; }
-        public decimal Longitude { get; }
-
-        public Position(decimal longitude, decimal latitude)
-        {
-            Longitude = longitude;
-            Latitude = latitude;
-        }
-
-        public override string ToString()
-        {
-            return $"Latitude: {Latitude}, Longitude: {Longitude}";
-        }
     }
 }

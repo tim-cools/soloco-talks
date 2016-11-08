@@ -120,21 +120,4 @@ namespace Soloco.Talks.PolyglotPersistence.F_InlineTransformationWithDomainEvent
             Position = position;
         }
     }
-
-    public class Position
-    {
-        public decimal Latitude { get; }
-        public decimal Longitude { get; }
-
-        public Position(decimal longitude, decimal latitude)
-        {
-            Longitude = longitude;
-            Latitude = latitude;
-        }
-
-        public override string ToString()
-        {
-            return $"Latitude: {Latitude}, Longitude: {Longitude}";
-        }
-    }
 }

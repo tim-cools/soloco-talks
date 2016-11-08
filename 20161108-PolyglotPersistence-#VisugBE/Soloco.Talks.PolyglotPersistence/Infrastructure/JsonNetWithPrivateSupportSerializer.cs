@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using Baseline;
 using JsonNet.PrivateSettersContractResolvers;
 using Marten;
 using Newtonsoft.Json;
@@ -25,9 +24,13 @@ namespace Soloco.Talks.PolyglotPersistence.Infrastructure
             ContractResolver = new PrivateSetterContractResolver()
         };
 
+        public EnumStorage EnumStorage => EnumStorage.AsString;
+
         public JsonNetWithPrivateSupportSerializer()
         {
-            EnumStorage = EnumStorage.AsString;
+            var converter = new StringEnumConverter();
+            _serializer.Converters.Add(converter);
+            _clean.Converters.Add(converter);
         }
 
         public string ToJson(object document)
@@ -64,32 +67,6 @@ namespace Soloco.Talks.PolyglotPersistence.Infrastructure
             _clean.Serialize(writer, document);
 
             return writer.ToString();
-        }
-
-        private EnumStorage _enumStorage = EnumStorage.AsInteger;
-
-        public EnumStorage EnumStorage
-        {
-            get
-            {
-                return _enumStorage;
-            }
-            private set
-            {
-                _enumStorage = value;
-
-                if (value == EnumStorage.AsString)
-                {
-                    var converter = new StringEnumConverter();
-                    _serializer.Converters.Add(converter);
-                    _clean.Converters.Add(converter);
-                }
-                else
-                {
-                    _serializer.Converters.RemoveAll(x => x is StringEnumConverter);
-                    _clean.Converters.RemoveAll(x => x is StringEnumConverter);
-                }
-            }
         }
     }
 }

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Soloco.Talks.PolyglotPersistence.Infrastructure;
 
-namespace Soloco.Talks.PolyglotPersistence.I_EventSourcingWithProjections
+namespace Soloco.Talks.PolyglotPersistence.H_EventSourcingWithProjections
 {
     public class RouteDetails
     {
@@ -46,18 +47,6 @@ namespace Soloco.Talks.PolyglotPersistence.I_EventSourcingWithProjections
             MinLongitude = minLongitude;
             MaxLatitude = maxLatitude;
             MaxLongitude = maxLongitude;
-        }
-    }
-
-    public class Position
-    {
-        public decimal Latitude { get; }
-        public decimal Longitude { get; }
-
-        public Position(decimal latitude, decimal longitude)
-        {
-            Latitude = latitude;
-            Longitude = longitude;
         }
     }
 }

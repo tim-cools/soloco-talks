@@ -6,7 +6,6 @@ using Xunit.Abstractions;
 
 namespace Soloco.Talks.PolyglotPersistence.B_StoreAndLoadAggregate
 {
-   
     public class Examples_B
     {
         private readonly ITestOutputHelper _testOutputHelper;
@@ -26,7 +25,7 @@ namespace Soloco.Talks.PolyglotPersistence.B_StoreAndLoadAggregate
             {
                 var route = session.Load<Route>(id);
 
-                _testOutputHelper.WriteLine(route.ToString());
+                _testOutputHelper.WriteAsJson(route);
             }
         }
 
@@ -38,7 +37,7 @@ namespace Soloco.Talks.PolyglotPersistence.B_StoreAndLoadAggregate
 
             using (var session = store.QuerySession())
             {
-                var json = session.Load<Route>(id);
+                var json = session.Json.FindById<Route>(id);
 
                 _testOutputHelper.WriteAsJson(json);
             }

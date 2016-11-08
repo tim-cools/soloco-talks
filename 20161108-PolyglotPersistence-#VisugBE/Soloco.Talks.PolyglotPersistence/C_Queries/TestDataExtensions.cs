@@ -1,5 +1,6 @@
 using System;
 using Marten;
+using Soloco.Talks.PolyglotPersistence.Infrastructure;
 
 namespace Soloco.Talks.PolyglotPersistence.C_Queries
 {
@@ -16,7 +17,7 @@ namespace Soloco.Talks.PolyglotPersistence.C_Queries
                     var route = new Route();
                     if (index % 2 == 0)
                     {
-                        route.Plan(new DateTime(2016, 05, 26).AddDays(index));
+                        route.Plan(DateTime.Now.AddDays(index + 1));
                     }
                     route.AddStop("Home", new Position(51.197894m, 4.481736m));
                     route.AddStop("WooRank", new Position(50.828417m, 4.400963m));

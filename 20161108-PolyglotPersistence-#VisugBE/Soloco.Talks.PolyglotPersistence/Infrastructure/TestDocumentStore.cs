@@ -27,7 +27,7 @@ namespace Soloco.Talks.PolyglotPersistence.Infrastructure
                 options.Connection(connectionString ?? ConnectionString.Local);
                 options.AutoCreateSchemaObjects = AutoCreate.CreateOrUpdate;
                 options.Serializer(new JsonNetWithPrivateSupportSerializer());
-
+                
                 if (testOutputHelper != null)
                 {
                     options.Logger(new TestOutputLogger(testOutputHelper));

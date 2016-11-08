@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Marten.Events.Projections;
-using Soloco.Talks.PolyglotPersistence.I_EventSourcingWithProjections.Domain;
+using Soloco.Talks.PolyglotPersistence.Infrastructure;
 
-namespace Soloco.Talks.PolyglotPersistence.I_EventSourcingWithProjections
+namespace Soloco.Talks.PolyglotPersistence.H_EventSourcingWithProjections
 {
     public class RouteDetailsViewProjection : ViewProjection<RouteDetails>
     {
