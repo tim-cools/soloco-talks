@@ -15,7 +15,7 @@ namespace Soloco.Talks.PolyglotPersistence.A_IsolationLevels
 
         public void Substract(int amountToSubstract)
         {
-            if (amountToSubstract > Amount) throw new InvalidOperationException("Insufficient funds");
+            if (amountToSubstract > Amount) throw new BusinessException("Insufficient funds");
 
             Amount -= amountToSubstract;
         }

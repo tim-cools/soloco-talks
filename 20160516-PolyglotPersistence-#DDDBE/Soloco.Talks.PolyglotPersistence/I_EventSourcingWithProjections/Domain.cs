@@ -53,7 +53,7 @@ namespace Soloco.Talks.PolyglotPersistence.I_EventSourcingWithProjections.Domain
         {
             if (date < Tomorrow())
             {
-                throw new InvalidOperationException("Can only plan route from tomorrow.");
+                throw new BusinessException("Can only plan route from tomorrow.");
             }
 
             Publish(new RoutePlanned(Id, date));
@@ -74,11 +74,11 @@ namespace Soloco.Talks.PolyglotPersistence.I_EventSourcingWithProjections.Domain
         {
             if (Status != RouteStatus.Planned)
             {
-                throw new InvalidOperationException("Can only set source planned routes.");
+                throw new BusinessException("Can only set source planned routes.");
             }
             if (Destination != null && timeOfDay < Destination.TimeOfDay)
             {
-                throw new InvalidOperationException("Route source time should come before destination time.");
+                throw new BusinessException("Route source time should come before destination time.");
             }
 
             Publish(new RouteSourceAdded(Id, name, timeOfDay, position));
@@ -93,15 +93,15 @@ namespace Soloco.Talks.PolyglotPersistence.I_EventSourcingWithProjections.Domain
         {
             if (Status != RouteStatus.Planned)
             {
-                throw new InvalidOperationException("Can only add destination to planned routes.");
+                throw new BusinessException("Can only add destination to planned routes.");
             }
             if (Source == null)
             {
-                throw new InvalidOperationException("Route source should be set first.");
+                throw new BusinessException("Route source should be set first.");
             }
             if (timeOfDay <= Source.TimeOfDay)
             {
-                throw new InvalidOperationException("Route destination time should come after source time.");
+                throw new BusinessException("Route destination time should come after source time.");
             }
 
             Publish(new RouteDestinationAdded(Id, name, timeOfDay, position));
@@ -116,15 +116,15 @@ namespace Soloco.Talks.PolyglotPersistence.I_EventSourcingWithProjections.Domain
         {
             if (Status != RouteStatus.Planned)
             {
-                throw new InvalidOperationException("Can only set source planned routes.");
+                throw new BusinessException("Can only set source planned routes.");
             }
             if (Source == null || Destination == null)
             {
-                throw new InvalidOperationException("Route source and destination should be set first.");
+                throw new BusinessException("Route source and destination should be set first.");
             }
             if (timeOfDay <= Source.TimeOfDay || timeOfDay >= Destination.TimeOfDay)
             {
-                throw new InvalidOperationException("Route stop time should be between planned source and destination time.");
+                throw new BusinessException("Route stop time should be between planned source and destination time.");
             }
 
             Publish(new RouteStopAdded(Id, name, timeOfDay, position));
@@ -139,19 +139,19 @@ namespace Soloco.Talks.PolyglotPersistence.I_EventSourcingWithProjections.Domain
         {
             if (Status != RouteStatus.Planned)
             {
-                throw new InvalidOperationException("Can only drive planned routes.");
+                throw new BusinessException("Can only drive planned routes.");
             }
             if (Source == null)
             {
-                throw new InvalidOperationException("Route should have a source stop.");
+                throw new BusinessException("Route should have a source stop.");
             }
             if (Destination == null)
             {
-                throw new InvalidOperationException("Route should have a destination stop.");
+                throw new BusinessException("Route should have a destination stop.");
             }
             if (_stops.Count < 1)
             {
-                throw new InvalidOperationException("Route should have at least one stops before you can drive.");
+                throw new BusinessException("Route should have at least one stops before you can drive.");
             }
 
             Publish(new RouteDriving(Id, date));

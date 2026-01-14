@@ -104,6 +104,7 @@
     <Compile Include="D_QueriesWithInclude\QueryWithIncludesExamples_D.cs" />
     <Compile Include="G_EventSourcing\Events.cs" />
     <Compile Include="G_EventSourcing\Domain.cs" />
+    <Compile Include="Infrastructure\BusinessEception.cs" />
     <Compile Include="Infrastructure\EventPlayer.cs" />
     <Compile Include="Infrastructure\JsonNetWithPrivateSupportSerializer.cs" />
     <Compile Include="Infrastructure\TestData.cs" />

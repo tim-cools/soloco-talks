@@ -34,7 +34,7 @@ namespace Soloco.Talks.PolyglotPersistence.F_InlineTransformationWithDomainEvent
         {
             if (date < DateTime.Today.AddDays(1))
             {
-                throw new InvalidOperationException("Route can only plan from tomorrow.");
+                throw new BusinessException("Route can only plan from tomorrow.");
             }
 
             Status = RouteStatus.Planned;

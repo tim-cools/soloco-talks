@@ -95,6 +95,7 @@
     <Compile Include="D_QueriesWithInclude\Examples.cs" />
     <Compile Include="G_EventSourcing\Events.cs" />
     <Compile Include="G_EventSourcing\Domain.cs" />
+    <Compile Include="Infrastructure\BusinessException.cs" />
     <Compile Include="Infrastructure\EventPlayer.cs" />
     <Compile Include="Infrastructure\JsonNetWithPrivateSupportSerializer.cs" />
     <Compile Include="Infrastructure\TestOutputHelperExtensions.cs" />
@@ -119,8 +120,6 @@
     <Compile Include="I_EventSourcingWithProjections\Views.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Infrastructure\TestDocumentStore.cs" />
-    <Compile Include="Z_Replication\Examples.cs" />
-    <Compile Include="Z_Replication\Model.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

@@ -41,7 +41,7 @@ namespace Soloco.Talks.PolyglotPersistence.D_QueriesWithInclude
             if (product == null) throw new ArgumentNullException(nameof(product));
             if (amount <= 0)
             {
-                throw new InvalidOperationException("Amount must be greather than 0.");
+                throw new BusinessException("Amount must be greather than 0.");
             }
 
             var line = new OrderLine(product.Id, amount);

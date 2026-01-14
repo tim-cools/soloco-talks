@@ -18,7 +18,7 @@ namespace Soloco.Talks.PolyglotPersistence.B_StoreAndLoadAggregate
         {
             if (date < Tomorrow())
             {
-                throw new InvalidOperationException("Route can only plan from tomorrow.");
+                throw new BusinessException("Route can only plan from tomorrow.");
             }
 
             Status = RouteStatus.Planned;
@@ -34,7 +34,7 @@ namespace Soloco.Talks.PolyglotPersistence.B_StoreAndLoadAggregate
         {
             if (Status != RouteStatus.Planned)
             {
-                throw new InvalidOperationException("Route should be planned first.");
+                throw new BusinessException("Route should be planned first.");
             }
 
             _stops.Add(new Stop(name, position));
