@@ -11,7 +11,8 @@ using Xunit.Abstractions;
 
 namespace Soloco.Talks.PolyglotPersistence.Z_Replication
 {
-
+    // not sure what I was trying to do here :-) definitely look into the default db replication options before
+    // attempting to do something like this yourself...
     public class Examples
     {
         private readonly ITestOutputHelper _testOutputHelper;
